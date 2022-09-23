@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vogg/utils/colors.dart';
+import 'package:vogg/widgets/big_text.dart';
+import 'package:vogg/widgets/small_text.dart';
 
 class MainFoodPage extends StatefulWidget {
   const MainFoodPage({Key? key}) : super(key: key);
@@ -25,12 +27,19 @@ class _MainFoodPageState extends State<MainFoodPage> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "Bangladesh",
-                        style:
-                            TextStyle(color: AppColors.mainColor, fontSize: 28),
+                      BigText(
+                        text: "Bangladesh",
+                        color: AppColors.mainColor,
                       ),
-                      Text('Dhaka'),
+                      Row(
+                        children: [
+                          SmallText(
+                            text: 'Dhaka',
+                            color: Colors.black54,
+                          ),
+                          Icon(Icons.arrow_drop_down_rounded)
+                        ],
+                      ),
                     ],
                   ),
                   Container(
