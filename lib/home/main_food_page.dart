@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:vogg/home/food_page_body.dart';
 import 'package:vogg/utils/colors.dart';
 import 'package:vogg/widgets/big_text.dart';
 import 'package:vogg/widgets/small_text.dart';
@@ -58,6 +59,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
               ),
             ),
           ),
+          FoodPageBody(),
         ],
       ),
     );
