@@ -12,17 +12,18 @@ class FoodPageBody extends StatefulWidget {
 }
 
 class _FoodPageBodyState extends State<FoodPageBody> {
-  PageController pageController = PageController(viewportFraction: .85);
-  final _currPageValue = 0.0;
+  PageController pageController = PageController(viewportFraction: 0.85);
+  var _currPageValue = 0.0;
   final double _scaleFactor = 0.8;
   final double _height = 220;
+
   @override
   void initState() {
     super.initState();
-    setState(() {
-      {
-        pageController.addListener(() {});
-      }
+    pageController.addListener(() {
+      setState(() {
+        _currPageValue = pageController.page!;
+      });
     });
   }
 
