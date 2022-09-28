@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vogg/home/food_page_body.dart';
 import 'package:vogg/utils/colors.dart';
+import 'package:vogg/utils/dimension.dart';
 import 'package:vogg/widgets/big_text.dart';
 import 'package:vogg/widgets/small_text.dart';
 
@@ -20,8 +21,10 @@ class _MainFoodPageState extends State<MainFoodPage> {
         children: [
           Container(
             child: Container(
-              margin: EdgeInsets.only(top: 45, bottom: 15),
-              padding: EdgeInsets.only(left: 20, right: 20),
+              margin: EdgeInsets.only(
+                  top: Dimension.height45, bottom: Dimension.height15),
+              padding: EdgeInsets.only(
+                  left: Dimension.radius20, right: Dimension.radius20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -44,15 +47,16 @@ class _MainFoodPageState extends State<MainFoodPage> {
                     ],
                   ),
                   Container(
-                    height: 60,
-                    width: 60,
+                    height: Dimension.height60,
+                    width: Dimension.width60,
                     decoration: BoxDecoration(
                       color: AppColors.mainColor,
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(Dimension.radius20),
                     ),
                     child: Icon(
                       Icons.search_rounded,
                       color: AppColors.buttonBackgroundColor,
+                      size: Dimension.iconSize24,
                     ),
                   )
                 ],
