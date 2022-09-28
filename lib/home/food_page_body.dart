@@ -91,15 +91,15 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         Container(
           height: 900,
           child: ListView.builder(
-              physics: AlwaysScrollableScrollPhysics(),
+              physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: 10,
               itemBuilder: (context, index) {
                 return Container(
                   margin: EdgeInsets.only(
-                    left: Dimension.width20,
-                    right: Dimension.width20,
-                  ),
+                      left: Dimension.width20,
+                      right: Dimension.width20,
+                      bottom: Dimension.height10),
                   child: Row(
                     children: [
                       Container(
