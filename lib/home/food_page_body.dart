@@ -38,6 +38,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        // left right slider section
         Container(
           height: Dimension.pageView,
           child: PageView.builder(
@@ -47,6 +48,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 return _buildPAgeItem(position);
               }),
         ),
+        //Dot section
         DotsIndicator(
           dotsCount: 5,
           position: _currPageValue,
@@ -56,6 +58,32 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             activeSize: const Size(18.0, 9.0),
             activeShape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5.0)),
+          ),
+        ),
+        //  Popular text Section
+        SizedBox(
+          height: Dimension.height30,
+        ),
+        Container(
+          margin: EdgeInsets.only(left: Dimension.width30),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              BigText(text: "Popular"),
+              SizedBox(
+                width: Dimension.width10,
+              ),
+              Container(
+                child: BigText(
+                  text: '.',
+                  color: Colors.black26,
+                ),
+              ),
+              SizedBox(
+                width: Dimension.width10,
+              ),
+              SmallText(text: 'Food pairing')
+            ],
           ),
         ),
       ],
