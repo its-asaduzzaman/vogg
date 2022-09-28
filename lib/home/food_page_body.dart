@@ -73,11 +73,9 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               SizedBox(
                 width: Dimension.width10,
               ),
-              Container(
-                child: BigText(
-                  text: '.',
-                  color: Colors.black26,
-                ),
+              BigText(
+                text: '.',
+                color: Colors.black26,
               ),
               SizedBox(
                 width: Dimension.width10,
@@ -85,6 +83,42 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               SmallText(text: 'Food pairing')
             ],
           ),
+        ),
+        //  List of food and images
+        SizedBox(
+          height: Dimension.height30,
+        ),
+        Container(
+          height: 900,
+          child: ListView.builder(
+              physics: AlwaysScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                return Container(
+                  margin: EdgeInsets.only(
+                    left: Dimension.width20,
+                    right: Dimension.width20,
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 120,
+                        width: 120,
+                        decoration: BoxDecoration(
+                          borderRadius:
+                              BorderRadius.circular(Dimension.radius20),
+                          color: Colors.white38,
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: AssetImage("assets/image/food1.png"),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }),
         ),
       ],
     );
