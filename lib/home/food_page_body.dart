@@ -102,9 +102,10 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                       bottom: Dimension.height10),
                   child: Row(
                     children: [
+                      //image section
                       Container(
-                        height: 120,
-                        width: 120,
+                        height: Dimension.listViewImgSize,
+                        width: Dimension.listViewImgSize,
                         decoration: BoxDecoration(
                           borderRadius:
                               BorderRadius.circular(Dimension.radius20),
@@ -112,6 +113,54 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                           image: DecorationImage(
                             fit: BoxFit.cover,
                             image: AssetImage("assets/image/food1.png"),
+                          ),
+                        ),
+                      ),
+                      //  Text section
+                      Expanded(
+                        child: Container(
+                          height: Dimension.listViewTextContSize,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(Dimension.radius20),
+                                bottomLeft: Radius.circular(Dimension.radius20),
+                              ),
+                              color: Colors.white),
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: Dimension.width10,
+                                right: Dimension.width10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                BigText(text: 'Nutritious fruit meal in china'),
+                                SizedBox(
+                                  height: Dimension.height10,
+                                ),
+                                SmallText(text: 'with chinese spelling'),
+                                SizedBox(
+                                  height: Dimension.height10,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    IconAndTextWidget(
+                                        text: 'Normal',
+                                        icon: Icons.circle_sharp,
+                                        iconColor: AppColors.iconColor1),
+                                    IconAndTextWidget(
+                                        text: '1.7Km',
+                                        icon: Icons.location_on,
+                                        iconColor: AppColors.mainColor),
+                                    IconAndTextWidget(
+                                        text: '32',
+                                        icon: Icons.access_time_rounded,
+                                        iconColor: AppColors.iconColor2),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
