@@ -38,4 +38,6 @@ class Dimension {
 
 //  popular food
   static double popularFoodImgSize = screenHeight / 2.41;
+
+  static double bottomHeightBar = screenHeight / 7.03;
 }
