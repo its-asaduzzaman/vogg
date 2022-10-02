@@ -6,6 +6,8 @@ import 'package:vogg/utils/dimension.dart';
 import 'package:vogg/widgets/big_text.dart';
 import 'package:vogg/widgets/small_text.dart';
 
+import '../food/popular_food_detail.dart';
+
 class MainFoodPage extends StatefulWidget {
   const MainFoodPage({Key? key}) : super(key: key);
 
@@ -64,8 +66,17 @@ class _MainFoodPageState extends State<MainFoodPage> {
             ),
           ),
           Expanded(
-            child: SingleChildScrollView(
-              child: FoodPageBody(),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const PopularFoodDetail()),
+                );
+              },
+              child: SingleChildScrollView(
+                child: FoodPageBody(),
+              ),
             ),
           ),
         ],
