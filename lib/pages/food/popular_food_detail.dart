@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vogg/utils/dimension.dart';
 import 'package:vogg/widgets/app_icon.dart';
+import 'package:vogg/widgets/expandable_text_widget.dart';
 
 import '../../utils/colors.dart';
 import '../../widgets/app_column.dart';
@@ -69,7 +70,7 @@ class PopularFoodDetail extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AppColumn(
-                    text: "Biriani",
+                    text: "Biriyani",
                   ),
                   SizedBox(
                     height: Dimension.height20,
@@ -78,23 +79,13 @@ class PopularFoodDetail extends StatelessWidget {
                   SizedBox(
                     height: Dimension.height30,
                   ),
-                  SmallText(
-                      text: "It's not only writers who can benefit from this "
-                          "free online tool. If you're a programmer who's working on a project where blocks of text are needed, this tool can be a great way to get that. It's a good way to test your programming and that the tool being created is working well."),
-                  SizedBox(
-                    height: Dimension.height5,
-                  ),
-                  Row(
-                    children: [
-                      SmallText(
-                        text: 'Show more',
-                        color: AppColors.mainColor,
-                      ),
-                      Icon(
-                        Icons.keyboard_arrow_down_rounded,
-                        color: AppColors.mainColor,
-                      ),
-                    ],
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: ExpandableTextWidget(
+                          text:
+                              "free online tool. If you're a programmer who's "
+                              "working on a project where blocks of text are needed, this tool can be a great way to get that. It's a good way to test your programming and that the tool being created is working well.free online tool. If you're a programmer who's working on a project where blocks of text are needed, this tool can be a great way to get that. It's a good way to test your programming and that the tool being created is working well.free online tool. If you're a programmer who's working on a project where blocks of text are needed,If you're a programmer who's working on a project where blocks of text are needed, If you're a programmer who's working on a project where blocks of text are needed, If you're a programmer who's working on a project where blocks of text are needed, If you're a programmer who's working on a project where blocks of text are needed, If you're a programmer who's working on a project where blocks of text are needed, If you're a programmer who's working on a project where blocks of text are needed,  "),
+                    ),
                   ),
                 ],
               ),
