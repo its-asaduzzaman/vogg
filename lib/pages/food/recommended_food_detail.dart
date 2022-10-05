@@ -72,9 +72,98 @@ class _RecommendedFoodDetailState extends State<RecommendedFoodDetail> {
                   left: Dimension.width20,
                   right: Dimension.width20,
                 ),
-              )
+              ),
             ],
           )),
+        ],
+      ),
+      bottomNavigationBar: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: Dimension.width20 * 2.5,
+                vertical: Dimension.height10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                AppIcon(
+                  icon: Icons.remove,
+                  backgroundColor: AppColors.mainColor,
+                  iconColor: Colors.white,
+                  iconSize: Dimension.iconSize24,
+                ),
+                BigText(
+                  text: "\$56.89 x 0",
+                  color: AppColors.mainBlackColor,
+                  size: Dimension.font26,
+                ),
+                AppIcon(
+                  icon: Icons.add,
+                  backgroundColor: AppColors.mainColor,
+                  iconColor: Colors.white,
+                  iconSize: Dimension.iconSize24,
+                ),
+              ],
+            ),
+          ),
+          Container(
+            height: Dimension.bottomHeightBar,
+            padding: EdgeInsets.only(
+                top: Dimension.height30,
+                bottom: Dimension.height30,
+                left: Dimension.width20,
+                right: Dimension.width20),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(Dimension.radius20 * 2),
+                topRight: Radius.circular(Dimension.radius20 * 2),
+              ),
+              color: AppColors.buttonBackgroundColor,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  padding: EdgeInsets.all(Dimension.height20),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(Dimension.radius20),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.remove,
+                        color: AppColors.signColor,
+                      ),
+                      SizedBox(
+                        width: Dimension.width5,
+                      ),
+                      BigText(text: "0"),
+                      SizedBox(
+                        width: Dimension.width5,
+                      ),
+                      Icon(
+                        Icons.add,
+                        color: AppColors.signColor,
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(Dimension.height20),
+                  decoration: BoxDecoration(
+                    color: AppColors.mainColor,
+                    borderRadius: BorderRadius.circular(Dimension.radius20),
+                  ),
+                  child: BigText(
+                    text: "\$70 | Add to cart",
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
