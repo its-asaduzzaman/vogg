@@ -66,17 +66,8 @@ class _MainFoodPageState extends State<MainFoodPage> {
             ),
           ),
           Expanded(
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const PopularFoodDetail()),
-                );
-              },
-              child: SingleChildScrollView(
-                child: FoodPageBody(),
-              ),
+            child: SingleChildScrollView(
+              child: FoodPageBody(),
             ),
           ),
         ],
