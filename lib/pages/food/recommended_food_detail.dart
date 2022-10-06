@@ -130,24 +130,9 @@ class _RecommendedFoodDetailState extends State<RecommendedFoodDetail> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(Dimension.radius20),
                   ),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.remove,
-                        color: AppColors.signColor,
-                      ),
-                      SizedBox(
-                        width: Dimension.width5,
-                      ),
-                      BigText(text: "0"),
-                      SizedBox(
-                        width: Dimension.width5,
-                      ),
-                      Icon(
-                        Icons.add,
-                        color: AppColors.signColor,
-                      ),
-                    ],
+                  child: Icon(
+                    Icons.favorite,
+                    color: AppColors.mainColor,
                   ),
                 ),
                 Container(
