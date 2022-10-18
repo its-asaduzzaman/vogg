@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:vogg/data/repository/popular_product_repo.dart';
+import 'package:vogg/models/products_model.dart';
 import '../data/repository/popular_product_repo.dart';
 
 class PopularProductController extends GetxController {
@@ -11,8 +12,9 @@ class PopularProductController extends GetxController {
   Future<void> getPopularProductList() async {
     Response response = await popularProductRepo.getPopularProductList();
     if (response.statusCode == 200) {
+      print("samrat");
       _popularProductList = [];
-      // _popularProductList.addAll();
+      _popularProductList.addAll(Product.fromJson(response.body).products);
       update();
     } else {}
   }
