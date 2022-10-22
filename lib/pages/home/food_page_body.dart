@@ -1,5 +1,6 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:vogg/controllers/popular_product_controller.dart';
 import 'package:vogg/utils/colors.dart';
 import 'package:vogg/utils/dimension.dart';
 import 'package:vogg/widgets/big_text.dart';
@@ -9,6 +10,7 @@ import 'package:vogg/widgets/small_text.dart';
 import '../../widgets/app_column.dart';
 import '../food/popular_food_detail.dart';
 import '../food/recommended_food_detail.dart';
+import 'package:get/get.dart';
 
 class FoodPageBody extends StatefulWidget {
   const FoodPageBody({Key? key}) : super(key: key);
@@ -43,27 +45,36 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     return Column(
       children: [
         // left right slider section
-        Container(
-          height: Dimension.pageView,
-          child: PageView.builder(
-              controller: pageController,
-              itemCount: 5,
-              itemBuilder: (context, position) {
-                return _buildPAgeItem(position);
-              }),
-        ),
+        GetBuilder<PopularProductController>(builder: (popularProducts) {
+          return Container(
+            height: Dimension.pageView,
+            child: PageView.builder(
+                controller: pageController,
+                itemCount: popularProducts.popularProductList.length,
+                itemBuilder: (context, position) {
+                  return _buildPAgeItem(position);
+                }),
+          );
+        }),
+
         //Dot section
-        DotsIndicator(
-          dotsCount: 5,
-          position: _currPageValue,
-          decorator: DotsDecorator(
-            activeColor: AppColors.mainColor,
-            size: const Size.square(9.0),
-            activeSize: const Size(18.0, 9.0),
-            activeShape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0)),
-          ),
-        ),
+        GetBuilder<PopularProductController>(builder: (popularProducts) {
+          // print(popularProducts.popularProductList.length);
+          return DotsIndicator(
+            dotsCount: popularProducts.popularProductList.isEmpty
+                ? 1
+                : popularProducts.popularProductList.length,
+            position: _currPageValue,
+            decorator: DotsDecorator(
+              activeColor: AppColors.mainColor,
+              size: const Size.square(9.0),
+              activeSize: const Size(18.0, 9.0),
+              activeShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0)),
+            ),
+          );
+        }),
+
         //  Popular text Section
         SizedBox(
           height: Dimension.height30,
