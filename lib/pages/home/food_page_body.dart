@@ -1,6 +1,8 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:vogg/controllers/popular_product_controller.dart';
+import 'package:vogg/models/products_model.dart';
+import 'package:vogg/utils/app_constants.dart';
 import 'package:vogg/utils/colors.dart';
 import 'package:vogg/utils/dimension.dart';
 import 'package:vogg/widgets/big_text.dart';
@@ -52,7 +54,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 controller: pageController,
                 itemCount: popularProducts.popularProductList.length,
                 itemBuilder: (context, position) {
-                  return _buildPAgeItem(position);
+                  return _buildPAgeItem(
+                      position, popularProducts.popularProductList[position]);
                 }),
           );
         }),
@@ -194,7 +197,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     );
   }
 
-  Widget _buildPAgeItem(int index) {
+  Widget _buildPAgeItem(int index, ProductModel popularProduct) {
     Matrix4 matrix = new Matrix4.identity();
     if (index == _currPageValue.floor()) {
       var currScale = 1 - (_currPageValue - index) * (1 - _scaleFactor);
@@ -233,9 +236,10 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               color: index.isEven
                   ? const Color(0xFF69c5df)
                   : const Color(0xFF9294cc),
-              image: const DecorationImage(
+              image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage("assets/image/food1.png"),
+                image: NetworkImage(
+                    AppConstants.BASE_URL + "/uploads/" + popularProduct.img!),
               ),
             ),
           ),
@@ -281,7 +285,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                     right: Dimension.width15,
                   ),
                   child: AppColumn(
-                    text: "Desi Side",
+                    text: popularProduct.name!,
                   ),
                 ),
               ),
