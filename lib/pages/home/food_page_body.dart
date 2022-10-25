@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:vogg/controllers/popular_product_controller.dart';
 import 'package:vogg/controllers/recommended_product_controller.dart';
 import 'package:vogg/models/products_model.dart';
+import 'package:vogg/routs/rout_helper.dart';
 import 'package:vogg/utils/app_constants.dart';
 import 'package:vogg/utils/colors.dart';
 import 'package:vogg/utils/dimension.dart';
@@ -52,13 +53,18 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           return popularProducts.isLoaded
               ? Container(
                   height: Dimension.pageView,
-                  child: PageView.builder(
-                      controller: pageController,
-                      itemCount: popularProducts.popularProductList.length,
-                      itemBuilder: (context, position) {
-                        return _buildPAgeItem(position,
-                            popularProducts.popularProductList[position]);
-                      }),
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.toNamed(RoutHelper.getPopularFood());
+                    },
+                    child: PageView.builder(
+                        controller: pageController,
+                        itemCount: popularProducts.popularProductList.length,
+                        itemBuilder: (context, position) {
+                          return _buildPAgeItem(position,
+                              popularProducts.popularProductList[position]);
+                        }),
+                  ),
                 )
               : CircularProgressIndicator(
                   color: AppColors.mainColor,
@@ -267,48 +273,39 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const PopularFoodDetail()),
-                );
-              },
+            child: Container(
+              height: Dimension.pageViewTextContainer,
+              margin: EdgeInsets.only(
+                  left: Dimension.width20,
+                  right: Dimension.width20,
+                  bottom: Dimension.height30),
+              decoration: BoxDecoration(
+                boxShadow: const [
+                  BoxShadow(
+                    color: Color(0xFFe8e8e8),
+                    blurRadius: 5.0,
+                    offset: Offset(0, 5), // changes position of shadow
+                  ),
+                  BoxShadow(
+                    color: Colors.white,
+                    offset: Offset(-5, 0),
+                  ),
+                  BoxShadow(
+                    color: Colors.white,
+                    offset: Offset(5, 0),
+                  ),
+                ],
+                borderRadius: BorderRadius.circular(Dimension.radius20),
+                color: Colors.white,
+              ),
               child: Container(
-                height: Dimension.pageViewTextContainer,
-                margin: EdgeInsets.only(
-                    left: Dimension.width20,
-                    right: Dimension.width20,
-                    bottom: Dimension.height30),
-                decoration: BoxDecoration(
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Color(0xFFe8e8e8),
-                      blurRadius: 5.0,
-                      offset: Offset(0, 5), // changes position of shadow
-                    ),
-                    BoxShadow(
-                      color: Colors.white,
-                      offset: Offset(-5, 0),
-                    ),
-                    BoxShadow(
-                      color: Colors.white,
-                      offset: Offset(5, 0),
-                    ),
-                  ],
-                  borderRadius: BorderRadius.circular(Dimension.radius20),
-                  color: Colors.white,
+                padding: EdgeInsets.only(
+                  top: Dimension.height15,
+                  left: Dimension.width15,
+                  right: Dimension.width15,
                 ),
-                child: Container(
-                  padding: EdgeInsets.only(
-                    top: Dimension.height15,
-                    left: Dimension.width15,
-                    right: Dimension.width15,
-                  ),
-                  child: AppColumn(
-                    text: popularProduct.name!,
-                  ),
+                child: AppColumn(
+                  text: popularProduct.name!,
                 ),
               ),
             ),

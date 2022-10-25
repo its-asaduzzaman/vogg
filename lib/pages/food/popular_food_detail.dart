@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:vogg/pages/home/main_food_page.dart';
 import 'package:vogg/utils/dimension.dart';
 import 'package:vogg/widgets/app_icon.dart';
 import 'package:vogg/widgets/expandable_text_widget.dart';
@@ -41,7 +43,7 @@ class PopularFoodDetail extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.pop(context);
+                    Get.to(() => MainFoodPage());
                   },
                   child: AppIcon(icon: Icons.arrow_back_ios),
                 ),
