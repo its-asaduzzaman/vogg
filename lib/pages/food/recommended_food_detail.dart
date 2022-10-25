@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:vogg/utils/colors.dart';
 import 'package:vogg/utils/dimension.dart';
 import 'package:vogg/widgets/app_icon.dart';
 import 'package:vogg/widgets/big_text.dart';
 import 'package:vogg/widgets/expandable_text_widget.dart';
+
+import '../../routs/rout_helper.dart';
+import '../home/main_food_page.dart';
 
 class RecommendedFoodDetail extends StatefulWidget {
   const RecommendedFoodDetail({Key? key}) : super(key: key);
@@ -25,7 +30,11 @@ class _RecommendedFoodDetailState extends State<RecommendedFoodDetail> {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(icon: Icons.clear),
+                GestureDetector(
+                    onTap: () {
+                      Get.toNamed(RoutHelper.getInitial());
+                    },
+                    child: AppIcon(icon: Icons.clear)),
                 AppIcon(icon: Icons.shopping_cart_outlined),
               ],
             ),

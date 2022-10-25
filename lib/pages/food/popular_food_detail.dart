@@ -5,6 +5,7 @@ import 'package:vogg/utils/dimension.dart';
 import 'package:vogg/widgets/app_icon.dart';
 import 'package:vogg/widgets/expandable_text_widget.dart';
 
+import '../../routs/rout_helper.dart';
 import '../../utils/colors.dart';
 import '../../widgets/app_column.dart';
 import '../../widgets/big_text.dart';
@@ -43,7 +44,7 @@ class PopularFoodDetail extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Get.to(() => MainFoodPage());
+                    Get.toNamed(RoutHelper.getInitial());
                   },
                   child: AppIcon(icon: Icons.arrow_back_ios),
                 ),

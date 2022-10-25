@@ -1,19 +1,30 @@
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:vogg/pages/food/popular_food_detail.dart';
+import 'package:vogg/pages/food/recommended_food_detail.dart';
 import 'package:vogg/pages/home/main_food_page.dart';
 
 class RoutHelper {
   static const String initial = "/";
   static const String popularFood = "/popular-food";
+  static const String recommended = "/recommended-food";
 
+  static String getInitial() => initial;
   static String getPopularFood() => popularFood;
+  static String getRecommended() => recommended;
 
   static List<GetPage> routes = [
-    GetPage(name: "/", page: () => const MainFoodPage()),
+    GetPage(
+        name: initial,
+        page: () => const MainFoodPage(),
+        transition: Transition.fadeIn),
     GetPage(
         name: popularFood,
         page: () => const PopularFoodDetail(),
+        transition: Transition.fadeIn),
+    GetPage(
+        name: recommended,
+        page: () => const RecommendedFoodDetail(),
         transition: Transition.fadeIn),
   ];
 }
