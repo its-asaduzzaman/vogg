@@ -102,62 +102,76 @@ class PopularFoodDetail extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: Container(
-        height: Dimension.bottomHeightBar,
-        padding: EdgeInsets.only(
-            top: Dimension.height30,
-            bottom: Dimension.height30,
-            left: Dimension.width20,
-            right: Dimension.width20),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(Dimension.radius20 * 2),
-            topRight: Radius.circular(Dimension.radius20 * 2),
-          ),
-          color: AppColors.buttonBackgroundColor,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              padding: EdgeInsets.all(Dimension.height20),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(Dimension.radius20),
+      bottomNavigationBar: GetBuilder<PopularProductController>(
+        builder: (popularProduct) {
+          return Container(
+            height: Dimension.bottomHeightBar,
+            padding: EdgeInsets.only(
+                top: Dimension.height30,
+                bottom: Dimension.height30,
+                left: Dimension.width20,
+                right: Dimension.width20),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(Dimension.radius20 * 2),
+                topRight: Radius.circular(Dimension.radius20 * 2),
               ),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.remove,
-                    color: AppColors.signColor,
-                  ),
-                  SizedBox(
-                    width: Dimension.width5,
-                  ),
-                  BigText(text: "0"),
-                  SizedBox(
-                    width: Dimension.width5,
-                  ),
-                  Icon(
-                    Icons.add,
-                    color: AppColors.signColor,
-                  ),
-                ],
-              ),
+              color: AppColors.buttonBackgroundColor,
             ),
-            Container(
-              padding: EdgeInsets.all(Dimension.height20),
-              decoration: BoxDecoration(
-                color: AppColors.mainColor,
-                borderRadius: BorderRadius.circular(Dimension.radius20),
-              ),
-              child: BigText(
-                text: "\$${product.price!} Add to cart",
-                color: Colors.white,
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  padding: EdgeInsets.all(Dimension.height20),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(Dimension.radius20),
+                  ),
+                  child: Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          popularProduct.setQuantity(false);
+                        },
+                        child: Icon(
+                          Icons.remove,
+                          color: AppColors.signColor,
+                        ),
+                      ),
+                      SizedBox(
+                        width: Dimension.width5,
+                      ),
+                      BigText(text: popularProduct.quantity.toString()),
+                      SizedBox(
+                        width: Dimension.width5,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          popularProduct.setQuantity(true);
+                        },
+                        child: Icon(
+                          Icons.add,
+                          color: AppColors.signColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(Dimension.height20),
+                  decoration: BoxDecoration(
+                    color: AppColors.mainColor,
+                    borderRadius: BorderRadius.circular(Dimension.radius20),
+                  ),
+                  child: BigText(
+                    text: "\$${product.price!} Add to cart",
+                    color: Colors.white,
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
