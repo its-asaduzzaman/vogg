@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:vogg/utils/app_constants.dart';
 import 'package:vogg/utils/colors.dart';
 import 'package:vogg/utils/dimension.dart';
 import 'package:vogg/widgets/app_icon.dart';
 import 'package:vogg/widgets/big_text.dart';
 import 'package:vogg/widgets/expandable_text_widget.dart';
 
+import '../../controllers/recommended_product_controller.dart';
 import '../../routs/rout_helper.dart';
 import '../home/main_food_page.dart';
 
-class RecommendedFoodDetail extends StatefulWidget {
-  const RecommendedFoodDetail({Key? key}) : super(key: key);
+class RecommendedFoodDetail extends StatelessWidget {
+  final int pageId;
+  const RecommendedFoodDetail({Key? key, required this.pageId})
+      : super(key: key);
 
-  @override
-  State<RecommendedFoodDetail> createState() => _RecommendedFoodDetailState();
-}
-
-class _RecommendedFoodDetailState extends State<RecommendedFoodDetail> {
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<RecommendedProductController>().recommendedProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
@@ -41,12 +42,6 @@ class _RecommendedFoodDetailState extends State<RecommendedFoodDetail> {
             bottom: PreferredSize(
               preferredSize: Size.fromHeight(20),
               child: Container(
-                child: Center(
-                  child: BigText(
-                    text: "Nutrition Fruit Meal",
-                    size: Dimension.font26,
-                  ),
-                ),
                 width: double.maxFinite,
                 padding: EdgeInsets.only(top: 5, bottom: 10),
                 decoration: BoxDecoration(
@@ -56,14 +51,20 @@ class _RecommendedFoodDetailState extends State<RecommendedFoodDetail> {
                     topRight: Radius.circular(Dimension.radius20),
                   ),
                 ),
+                child: Center(
+                  child: BigText(
+                    text: product.name!,
+                    size: Dimension.font26,
+                  ),
+                ),
               ),
             ),
             pinned: true,
             backgroundColor: Colors.redAccent,
             expandedHeight: 300,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                'assets/image/food1.png',
+              background: Image.network(
+                AppConstants.BASE_URL + AppConstants.UPLOAD_URL + product.img!,
                 width: double.maxFinite,
                 fit: BoxFit.cover,
               ),
@@ -73,14 +74,11 @@ class _RecommendedFoodDetailState extends State<RecommendedFoodDetail> {
               child: Column(
             children: [
               Container(
-                child: ExpandableTextWidget(
-                  text:
-                      "orking on a project where blocks of text are needed, this tool can be a great way to get that. It's a good way to test your programming and that the tool being created is working well.free online tool. If you're a programmer who's working on a project where blocks of text are needed, this tool can be a great way to get that. It's a good way toorking on a project where blocks of text are needed, this tool can be a great way to get that. It's a good way to test your programming and that the tool being created is working well.free online tool. If you're a programmer who's working on a project where blocks of text are needed, this tool can be a great way to get that. It's a good way toorking on a project where blocks of text are needed, this tool can be a great way to get that. It's a good way to test your programming and that the tool being created is working well.free online tool. If you're a programmer who's working on a project where blocks of text are needed, this tool can be a great way to get that. It's a good way toorking on a project where blocks of text are needed, this tool can be a great way to get that. It's a good way to test your programming and that the tool being created is working well.free online tool. If you're a programmer who's working on a project where blocks of text are needed, this tool can be a great way to get that. It's a good way toorking on a project where blocks of text are needed, this tool can be a great way to get that. It's a good way to test your programming and that the tool being created is working well.free online tool. If you're a programmer who's working on a project where blocks of text are needed, this tool can be a great way to get that. It's a good way toorking on a project where blocks of text are needed, this tool can be a great way to get that. It's a good way to test your programming and that the tool being created is working well.free online tool. If you're a programmer who's working on a project where blocks of text are needed, this tool can be a great way to get that. It's a good way toorking on a project where blocks of text are needed, this tool can be a great way to get that. It's a good way to test your programming and that the tool being created is working well.free online tool. If you're a programmer who's working on a project where blocks of text are needed, this tool can be a great way to get that. It's a good way toorking on a project where blocks of text are needed, this tool can be a great way to get that. It's a good way to test your programming and that the tool being created is working well.free online tool. If you're a programmer who's working on a project where blocks of text are needed, this tool can be a great way to get that. It's a good way toorking on a project where blocks of text are needed, this tool can be a great way to get that. It's a good way to test your programming and that the tool being created is working well.free online tool. If you're a programmer who's working on a project where blocks of text are needed, this tool can be a great way to get that. It's a good way to",
-                ),
                 margin: EdgeInsets.only(
                   left: Dimension.width20,
                   right: Dimension.width20,
                 ),
+                child: ExpandableTextWidget(text: product.description!),
               ),
             ],
           )),
@@ -103,7 +101,7 @@ class _RecommendedFoodDetailState extends State<RecommendedFoodDetail> {
                   iconSize: Dimension.iconSize24,
                 ),
                 BigText(
-                  text: "\$56.89 x 0",
+                  text: "\$${product.price} x 0",
                   color: AppColors.mainBlackColor,
                   size: Dimension.font26,
                 ),
@@ -151,7 +149,7 @@ class _RecommendedFoodDetailState extends State<RecommendedFoodDetail> {
                     borderRadius: BorderRadius.circular(Dimension.radius20),
                   ),
                   child: BigText(
-                    text: "\$70 | Add to cart",
+                    text: "\$${product.price} | Add to cart",
                     color: Colors.white,
                   ),
                 ),
