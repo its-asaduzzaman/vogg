@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vogg/controllers/popular_product_controller.dart';
 import 'package:vogg/pages/home/main_food_page.dart';
+import 'package:vogg/utils/app_constants.dart';
 import 'package:vogg/utils/dimension.dart';
 import 'package:vogg/widgets/app_icon.dart';
 import 'package:vogg/widgets/expandable_text_widget.dart';
@@ -13,10 +15,15 @@ import '../../widgets/icon_and_text_widget.dart';
 import '../../widgets/small_text.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  const PopularFoodDetail({Key? key}) : super(key: key);
+  int pageId;
+  PopularFoodDetail({Key? key, required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<PopularProductController>().popularProductList[pageId];
+    // print("page id is " + pageId.toString());
+    // print("product name is " + product.name.toString());
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -30,7 +37,9 @@ class PopularFoodDetail extends StatelessWidget {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage("assets/image/food0.jpg"),
+                  image: NetworkImage(AppConstants.BASE_URL +
+                      AppConstants.UPLOAD_URL +
+                      product.img!),
                 ),
               ),
             ),
@@ -46,9 +55,9 @@ class PopularFoodDetail extends StatelessWidget {
                   onTap: () {
                     Get.toNamed(RoutHelper.getInitial());
                   },
-                  child: AppIcon(icon: Icons.arrow_back_ios),
+                  child: const AppIcon(icon: Icons.arrow_back_ios),
                 ),
-                AppIcon(icon: Icons.shopping_cart_checkout_outlined),
+                const AppIcon(icon: Icons.shopping_cart_checkout_outlined),
               ],
             ),
           ),
@@ -73,7 +82,7 @@ class PopularFoodDetail extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AppColumn(
-                    text: "Biriyani",
+                    text: product.name!,
                   ),
                   SizedBox(
                     height: Dimension.height20,
@@ -84,10 +93,7 @@ class PopularFoodDetail extends StatelessWidget {
                   ),
                   Expanded(
                     child: SingleChildScrollView(
-                      child: ExpandableTextWidget(
-                          text:
-                              "free online tool. If you're a programmer who's "
-                              "working on a project where blocks of text are needed, this tool can be a great way to get that. It's a good way to test your programming and that the tool being created is working well.free online tool. If you're a programmer who's working on a project where blocks of text are needed, this tool can be a great way to get that. It's a good way to test your programming and that the tool being created is working well.free online tool. If you're a programmer who's working on a project where blocks of text are needed,If you're a programmer who's working on a project where blocks of text are needed, If you're a programmer who's working on a project where blocks of text are needed, If you're a programmer who's working on a project where blocks of text are needed, If you're a programmer who's working on a project where blocks of text are needed, If you're a programmer who's working on a project where blocks of text are needed, If you're a programmer who's working on a project where blocks of text are needed,  "),
+                      child: ExpandableTextWidget(text: product.description),
                     ),
                   ),
                 ],

@@ -53,18 +53,13 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           return popularProducts.isLoaded
               ? Container(
                   height: Dimension.pageView,
-                  child: GestureDetector(
-                    onTap: () {
-                      Get.toNamed(RoutHelper.getPopularFood());
-                    },
-                    child: PageView.builder(
-                        controller: pageController,
-                        itemCount: popularProducts.popularProductList.length,
-                        itemBuilder: (context, position) {
-                          return _buildPAgeItem(position,
-                              popularProducts.popularProductList[position]);
-                        }),
-                  ),
+                  child: PageView.builder(
+                      controller: pageController,
+                      itemCount: popularProducts.popularProductList.length,
+                      itemBuilder: (context, position) {
+                        return _buildPAgeItem(position,
+                            popularProducts.popularProductList[position]);
+                      }),
                 )
               : CircularProgressIndicator(
                   color: AppColors.mainColor,
@@ -249,20 +244,25 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       transform: matrix,
       child: Stack(
         children: [
-          Container(
-            height: Dimension.pageViewContainer,
-            margin: EdgeInsets.only(
-                left: Dimension.width10, right: Dimension.width10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(Dimension.radius30),
-              color: index.isEven
-                  ? const Color(0xFF69c5df)
-                  : const Color(0xFF9294cc),
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: NetworkImage(AppConstants.BASE_URL +
-                    AppConstants.UPLOAD_URL +
-                    popularProduct.img!),
+          GestureDetector(
+            onTap: () {
+              Get.toNamed(RoutHelper.getPopularFood(index));
+            },
+            child: Container(
+              height: Dimension.pageViewContainer,
+              margin: EdgeInsets.only(
+                  left: Dimension.width10, right: Dimension.width10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(Dimension.radius30),
+                color: index.isEven
+                    ? const Color(0xFF69c5df)
+                    : const Color(0xFF9294cc),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(AppConstants.BASE_URL +
+                      AppConstants.UPLOAD_URL +
+                      popularProduct.img!),
+                ),
               ),
             ),
           ),
