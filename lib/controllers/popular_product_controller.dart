@@ -33,40 +33,62 @@ class PopularProductController extends GetxController {
 
   void setQuantity(bool isIncrement) {
     if (isIncrement) {
-      _quantity = _quantity + 1;
-      if (_quantity > 20) {
-        _quantity = 20;
-        Get.snackbar(
-          "Item Count",
-          "You can't add more",
-          backgroundColor: AppColors.mainColor,
-          colorText: Colors.white,
-          duration: const Duration(seconds: 1),
-        );
-      }
+      _quantity = checkQuantity(_quantity + 1);
     } else {
-      _quantity = _quantity - 1;
-      if (_quantity < 0) {
-        _quantity = 0;
-        Get.snackbar(
-          "Item Count",
-          "You can't reduce more",
-          backgroundColor: AppColors.mainColor,
-          colorText: Colors.white,
-          duration: const Duration(seconds: 1),
-        );
-      }
+      _quantity = checkQuantity(_quantity - 1);
+      print("decrement " + _quantity.toString());
     }
     update();
   }
 
-  void initProduct(CartController cart) {
+  int checkQuantity(int quantity) {
+    if ((_inCartItems + quantity) < 0) {
+      Get.snackbar(
+        "Item Count",
+        "You can't reduce more",
+        backgroundColor: AppColors.mainColor,
+        colorText: Colors.white,
+        duration: const Duration(seconds: 1),
+      );
+      return 0;
+    } else if ((_inCartItems + quantity) > 20) {
+      _quantity = 20;
+      Get.snackbar(
+        "Item Count",
+        "You can't add more",
+        backgroundColor: AppColors.mainColor,
+        colorText: Colors.white,
+        duration: const Duration(seconds: 1),
+      );
+      return 20;
+    } else {
+      return quantity;
+    }
+  }
+
+  void initProduct(ProductModel product, CartController cart) {
     _quantity = 0;
     _inCartItems = 0;
     _cart = cart;
+    var exist = false;
+    exist = _cart.existInCart(product);
+    print("exist or not " + exist.toString());
+
+    if (exist) {
+      _inCartItems = _cart.getQuantity(product);
+    }
+    print("the quantity in the car is " + _inCartItems.toString());
   }
 
   void addItem(ProductModel product) {
     _cart.addItem(product, _quantity);
+    _quantity = 0;
+    _inCartItems = _cart.getQuantity(product);
+    _cart.items.forEach((key, value) {
+      print("The id is " +
+          value.id.toString() +
+          " The quantity is " +
+          value.quantity.toString());
+    });
   }
 }
