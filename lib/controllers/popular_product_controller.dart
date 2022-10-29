@@ -51,6 +51,10 @@ class PopularProductController extends GetxController {
         colorText: Colors.white,
         duration: const Duration(seconds: 1),
       );
+      if (_inCartItems > 0) {
+        _quantity = -_inCartItems;
+        return _quantity;
+      }
       return 0;
     } else if ((_inCartItems + quantity) > 20) {
       _quantity = 20;
