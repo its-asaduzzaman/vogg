@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vogg/controllers/popular_product_controller.dart';
+import 'package:vogg/pages/cart/cart_page.dart';
 import 'package:vogg/pages/food/popular_food_detail.dart';
 import 'package:vogg/pages/home/main_food_page.dart';
 import 'package:vogg/routs/rout_helper.dart';
@@ -24,9 +25,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      home: MainFoodPage(),
-      initialRoute: RoutHelper.initial,
-      getPages: RoutHelper.routes,
+      home: CartPage(),
+      // initialRoute: RoutHelper.initial,
+      // getPages: RoutHelper.routes,
     );
   }
 }
