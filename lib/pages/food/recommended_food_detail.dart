@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:vogg/controllers/popular_product_controller.dart';
+import 'package:vogg/pages/cart/cart_page.dart';
 import 'package:vogg/utils/app_constants.dart';
 import 'package:vogg/utils/colors.dart';
 import 'package:vogg/utils/dimension.dart';
@@ -44,7 +45,14 @@ class RecommendedFoodDetail extends StatelessWidget {
                   GetBuilder<PopularProductController>(builder: (controller) {
                     return Stack(
                       children: [
-                        AppIcon(icon: Icons.shopping_cart_checkout_outlined),
+                        GestureDetector(
+                            onTap: () {
+                              Get.to(() {
+                                return CartPage();
+                              });
+                            },
+                            child: AppIcon(
+                                icon: Icons.shopping_cart_checkout_outlined)),
                         Get.find<PopularProductController>().totalItems >= 1
                             ? Positioned(
                                 top: 0,

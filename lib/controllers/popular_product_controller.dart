@@ -5,6 +5,7 @@ import 'package:vogg/data/repository/popular_product_repo.dart';
 import 'package:vogg/models/products_model.dart';
 import 'package:vogg/utils/colors.dart';
 import '../data/repository/popular_product_repo.dart';
+import '../models/car_model.dart';
 
 class PopularProductController extends GetxController {
   final PopularProductRepo popularProductRepo;
@@ -100,5 +101,9 @@ class PopularProductController extends GetxController {
 
   int get totalItems {
     return _cart.totalItems;
+  }
+
+  List<CartModel> get getItems {
+    return _cart.getItems;
   }
 }
