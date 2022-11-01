@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:vogg/controllers/cart_controller.dart';
 import 'package:vogg/controllers/popular_product_controller.dart';
 import 'package:vogg/pages/home/main_food_page.dart';
+import 'package:vogg/routs/rout_helper.dart';
 import 'package:vogg/utils/app_constants.dart';
 import 'package:vogg/utils/colors.dart';
 import 'package:vogg/widgets/app_icon.dart';
@@ -37,9 +38,7 @@ class CartPage extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Get.to(() {
-                      return MainFoodPage();
-                    });
+                    Get.toNamed(RoutHelper.getInitial());
                   },
                   child: AppIcon(
                     icon: Icons.home_outlined,
