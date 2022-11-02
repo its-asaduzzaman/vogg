@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vogg/controllers/cart_controller.dart';
 import 'package:vogg/controllers/popular_product_controller.dart';
+import 'package:vogg/controllers/recommended_product_controller.dart';
 import 'package:vogg/pages/home/main_food_page.dart';
 import 'package:vogg/routs/rout_helper.dart';
 import 'package:vogg/utils/app_constants.dart';
@@ -78,23 +79,43 @@ class CartPage extends StatelessWidget {
                               width: double.maxFinite,
                               child: Row(
                                 children: [
-                                  Container(
-                                    width: Dimension.height20 * 5,
-                                    height: Dimension.height20 * 5,
-                                    margin: EdgeInsets.only(
-                                        bottom: Dimension.height10),
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: NetworkImage(
-                                            AppConstants.BASE_URL +
-                                                AppConstants.UPLOAD_URL +
-                                                cartController
-                                                    .getItems[index].img!),
+                                  GestureDetector(
+                                    onTap: () {
+                                      var popularIndex =
+                                          Get.find<PopularProductController>()
+                                              .popularProductList
+                                              .indexOf(
+                                                  _cartList[index].product!);
+                                      if (popularIndex >= 0) {
+                                        Get.toNamed(RoutHelper.getPopularFood(
+                                            popularIndex));
+                                      } else {
+                                        var recommendedIndex = Get.find<
+                                                RecommendedProductController>()
+                                            .recommendedProductList
+                                            .indexOf(_cartList[index].product!);
+                                        Get.toNamed(RoutHelper.getRecommended(
+                                            recommendedIndex));
+                                      }
+                                    },
+                                    child: Container(
+                                      width: Dimension.height20 * 5,
+                                      height: Dimension.height20 * 5,
+                                      margin: EdgeInsets.only(
+                                          bottom: Dimension.height10),
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: NetworkImage(
+                                              AppConstants.BASE_URL +
+                                                  AppConstants.UPLOAD_URL +
+                                                  cartController
+                                                      .getItems[index].img!),
+                                        ),
+                                        borderRadius: BorderRadius.circular(
+                                            Dimension.radius20),
+                                        color: Colors.white,
                                       ),
-                                      borderRadius: BorderRadius.circular(
-                                          Dimension.radius20),
-                                      color: Colors.white,
                                     ),
                                   ),
                                   SizedBox(
