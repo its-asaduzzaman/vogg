@@ -214,6 +214,62 @@ class CartPage extends StatelessWidget {
           )
         ],
       ),
+      bottomNavigationBar: GetBuilder<CartController>(
+        builder: (controller) {
+          return Container(
+            height: Dimension.bottomHeightBar,
+            padding: EdgeInsets.only(
+                top: Dimension.height30,
+                bottom: Dimension.height30,
+                left: Dimension.width20,
+                right: Dimension.width20),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(Dimension.radius20 * 2),
+                topRight: Radius.circular(Dimension.radius20 * 2),
+              ),
+              color: AppColors.buttonBackgroundColor,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  padding: EdgeInsets.all(Dimension.height20),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(Dimension.radius20),
+                  ),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: Dimension.width5,
+                      ),
+                      BigText(text: "\$ ${controller.totalAmount}"),
+                      SizedBox(
+                        width: Dimension.width5,
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(Dimension.height20),
+                  decoration: BoxDecoration(
+                    color: AppColors.mainColor,
+                    borderRadius: BorderRadius.circular(Dimension.radius20),
+                  ),
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: BigText(
+                      text: "Check Out",
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }
