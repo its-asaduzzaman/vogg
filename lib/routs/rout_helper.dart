@@ -3,6 +3,7 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:vogg/pages/cart/cart_page.dart';
 import 'package:vogg/pages/food/popular_food_detail.dart';
 import 'package:vogg/pages/food/recommended_food_detail.dart';
+import 'package:vogg/pages/home/home_page.dart';
 import 'package:vogg/pages/home/main_food_page.dart';
 
 class RoutHelper {
@@ -22,7 +23,7 @@ class RoutHelper {
     GetPage(
         name: initial,
         page: () {
-          return const MainFoodPage();
+          return const HomePage();
         },
         transition: Transition.fadeIn),
     GetPage(
