@@ -4,6 +4,7 @@ import 'package:vogg/controllers/popular_product_controller.dart';
 import 'package:vogg/pages/cart/cart_page.dart';
 import 'package:vogg/pages/food/popular_food_detail.dart';
 import 'package:vogg/pages/home/main_food_page.dart';
+import 'package:vogg/pages/splash/splash_page.dart';
 import 'package:vogg/routs/rout_helper.dart';
 import 'controllers/recommended_product_controller.dart';
 import 'helper/dependencies.dart' as dep;
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      initialRoute: RoutHelper.initial,
+      initialRoute: RoutHelper.getSplashPage(),
       getPages: RoutHelper.routes,
     );
   }
