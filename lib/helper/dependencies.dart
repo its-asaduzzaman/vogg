@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vogg/controllers/cart_controller.dart';
 import 'package:vogg/data/api/api_client.dart';
 import 'package:vogg/data/repository/cart_repo.dart';
@@ -10,13 +11,15 @@ import '../data/repository/popular_product_repo.dart';
 import '../data/repository/recommended_product_repo.dart';
 
 Future<void> init() async {
+  final sharedPreferences = await SharedPreferences.getInstance();
+  Get.lazyPut(() => sharedPreferences);
   //api clint
   Get.lazyPut(() => ApiClient(appBaseUrl: AppConstants.BASE_URL));
 
   //repos
   Get.lazyPut(() => PopularProductRepo(apiClient: Get.find()));
   Get.lazyPut(() => RecommendedProductRepo(apiClient: Get.find()));
-  Get.lazyPut(() => CartRepo());
+  Get.lazyPut(() => CartRepo(sharedPreferences: Get.find()));
 
   //Controllers
   Get.lazyPut(() => PopularProductController(popularProductRepo: Get.find()));
