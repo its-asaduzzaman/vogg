@@ -258,7 +258,9 @@ class CartPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(Dimension.radius20),
                   ),
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      controller.addToHistory();
+                    },
                     child: BigText(
                       text: "Check Out",
                       color: Colors.white,
